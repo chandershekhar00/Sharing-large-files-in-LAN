@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FileDrop — Receive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/receiver.css">
+</head>
+<body class="theme-green">
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">📥</div>
+    <h1>FileDrop <span class="role">// receiver</span></h1>
+  </div>
+  <div class="tagline">// waiting for incoming files…</div>
+</header>
+
+<main>
+
+  <!-- Status card -->
+  <div class="card">
+    <div class="card-label">Status</div>
+    <div class="pulse-ring">
+      <div class="pulse-dot"></div>
+      <span class="status-text">Listening for transfers</span>
+    </div>
+    <div class="status-hint">Files appear below as they arrive. Large files show live progress.</div>
+  </div>
+
+  <!-- Transfers list -->
+  <div class="card">
+    <div class="card-label">Incoming transfers</div>
+    <div id="transfers-container">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📡</div>
+        No transfers yet — waiting for sender…
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>FileDrop receiver · auto-refreshes every {{REFRESH_INTERVAL}}ms</footer>
+
+<script src="/static/js/common.js"></script>
+<script src="/static/js/receiver.js"></script>
+<script>
+  const REFRESH_INTERVAL = {{REFRESH_INTERVAL}};
+</script>
+</body>
+</html>

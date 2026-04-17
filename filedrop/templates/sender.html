@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FileDrop — Send</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/common.css">
+<link rel="stylesheet" href="/static/css/sender.css">
+</head>
+<body class="theme-purple">
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">📡</div>
+    <h1>FileDrop<span class="version">v{{VERSION}}</span></h1>
+  </div>
+  <div class="tagline">// sender interface — chunked transfer engine</div>
+</header>
+
+<main>
+
+  <!-- Step 1: Select files -->
+  <div class="card">
+    <div class="card-label">01 — Select files</div>
+    <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+      <div class="drop-icon">📂</div>
+      <div class="drop-title">Drop files here or click to browse</div>
+      <div class="drop-sub">Any file type · Up to 100 GB per file</div>
+      <input type="file" id="file-input" multiple>
+    </div>
+    <div id="file-list"></div>
+  </div>
+
+  <!-- Step 2: Transfer -->
+  <div class="card">
+    <div class="card-label">02 — Transfer</div>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-header">
+        <span id="progress-filename">—</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-stats">
+        <span><span class="stat-val" id="stat-sent">0 B</span> sent</span>
+        <span><span class="stat-val" id="stat-speed">— MB/s</span></span>
+        <span>ETA <span class="stat-val" id="stat-eta">—</span></span>
+      </div>
+    </div>
+
+    <div id="msg-success" class="msg msg-success">✓ All files transferred successfully!</div>
+    <div id="msg-error"   class="msg msg-error">✗ <span id="err-text"></span></div>
+    <div id="msg-info"    class="msg msg-info">⟳ <span id="info-text"></span></div>
+
+    <button id="send-btn" onclick="startTransfer()" disabled>Send Files</button>
+  </div>
+
+  <!-- Completed -->
+  <div class="card" id="completed-card" style="display:none">
+    <div class="card-label">Completed transfers</div>
+    <div id="completed-list"></div>
+  </div>
+
+</main>
+
+<footer>FileDrop · Python · No dependencies · <span class="tag-green">● LAN + Internet</span></footer>
+
+<script src="/static/js/common.js"></script>
+<script src="/static/js/sender.js"></script>
+<script>
+  // Inject server-side config into JS
+  const CHUNK_SIZE = {{CHUNK_SIZE}};
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* FileDrop v2.0 — common.css
+   Shared styles: reset, typography, layout, cards, tags */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Theme: Purple (sender) ─────────────────────────────────────────────── */
+body.theme-purple {
+  --bg:           #0a0a0f;
+  --surface:      #111118;
+  --card:         #16161f;
+  --border:       #2a2a38;
+  --accent:       #7c6af7;
+  --accent-dim:   #3d3580;
+  --accent-glow:  rgba(124,106,247,0.15);
+  --text:         #e8e8f0;
+  --muted:        #6b6b88;
+  --success:      #4ade80;
+  --danger:       #f87171;
+}
+
+/* ── Theme: Green (receiver) ────────────────────────────────────────────── */
+body.theme-green {
+  --bg:           #050d0a;
+  --surface:      #0b1510;
+  --card:         #0f1d15;
+  --border:       #1e3028;
+  --accent:       #34d399;
+  --accent-dim:   #0d4a30;
+  --accent-glow:  rgba(52,211,153,0.08);
+  --text:         #e0f0e8;
+  --muted:        #527862;
+  --success:      #4ade80;
+  --danger:       #f87171;
+}
+
+/* ── Fonts ──────────────────────────────────────────────────────────────── */
+:root {
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(124,106,247,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,106,247,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none; z-index: 0;
+}
+body.theme-green::before {
+  background-image:
+    linear-gradient(rgba(52,211,153,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52,211,153,0.03) 1px, transparent 1px);
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+header {
+  width: 100%; max-width: 720px;
+  padding: 2.5rem 1.5rem 0;
+  position: relative; z-index: 1;
+}
+
+main {
+  width: 100%; max-width: 720px;
+  padding: 2rem 1.5rem;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+
+footer {
+  margin-top: auto; padding: 1.5rem;
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--muted); text-align: center;
+  position: relative; z-index: 1;
+}
+
+/* ── Header / Logo ──────────────────────────────────────────────────────── */
+.logo {
+  display: flex; align-items: center;
+  gap: 10px; margin-bottom: 0.25rem;
+}
+
+.logo-icon {
+  width: 32px; height: 32px;
+  background: var(--accent); border-radius: 8px;
+  display: flex; align-items: center;
+  justify-content: center; font-size: 16px;
+}
+
+.logo h1 {
+  font-family: var(--mono);
+  font-size: 1.1rem; font-weight: 700;
+}
+
+.version {
+  font-family: var(--mono);
+  font-size: 0.65rem; color: var(--muted); margin-left: 4px;
+}
+
+.role {
+  color: var(--muted); font-weight: 400;
+}
+
+.tagline {
+  font-size: 0.8rem; color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.card-label {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--muted); text-transform: uppercase;
+  letter-spacing: 1.5px; margin-bottom: 1rem;
+}
+
+/* ── Tags ───────────────────────────────────────────────────────────────── */
+.tag-green {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 4px; padding: 2px 8px;
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--success);
+  border-color: rgba(74,222,128,0.4);
+}
+
+/* ── Status messages ────────────────────────────────────────────────────── */
+.msg {
+  padding: 0.75rem 1rem; border-radius: 8px;
+  font-family: var(--mono); font-size: 0.75rem;
+  display: none; margin-bottom: 0.75rem;
+}
+.msg-success { background: rgba(74,222,128,0.1);  border: 1px solid rgba(74,222,128,0.3);  color: var(--success); }
+.msg-error   { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); color: var(--danger); }
+.msg-info    { background: var(--accent-glow);    border: 1px solid rgba(124,106,247,0.3); color: var(--accent); }
